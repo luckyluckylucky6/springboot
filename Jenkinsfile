@@ -18,7 +18,7 @@ pipeline {
         stage('Build By Docker') {
             steps {
                 sh '''cd docker
-                docker build -t crpi-12tq7ejp5irxwm77.cn-hangzhou.personal.cr.aliyuncs.com/m1-test/springboot:${tag}
+                docker build -t crpi-12tq7ejp5irxwm77.cn-hangzhou.personal.cr.aliyuncs.com/m1-test/springboot:${tag} .
                 rm -rf java'''
             }
         }
