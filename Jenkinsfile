@@ -22,5 +22,12 @@ pipeline {
                 rm -rf java'''
             }
         }
+        stage('Push Docker Image To Repository') {
+            steps {
+                sh '''cd docker
+                docker push crpi-12tq7ejp5irxwm77.cn-hangzhou.personal.cr.aliyuncs.com/m1-test/springboot:${tag}
+                docker rmi -f crpi-12tq7ejp5irxwm77.cn-hangzhou.personal.cr.aliyuncs.com/m1-test/springboot:${tag}'''
+            }
+        }
     }
 }
