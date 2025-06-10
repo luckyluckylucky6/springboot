@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloContnoller {
     @RequestMapping("/hello")
     public String hello(){
-        return "hello,word!";
+        return "hello,word! ---v1.1.0";
     }
 }

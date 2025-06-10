@@ -29,5 +29,11 @@ pipeline {
                 docker rmi -f crpi-12tq7ejp5irxwm77.cn-hangzhou.personal.cr.aliyuncs.com/m1-test/springboot:${tag}'''
             }
         }
+        stage('Exec On Kubernetes') {
+            steps {
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'k8s-master', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''kubectl set image deployment springboot springboot=crpi-12tq7ejp5irxwm77.cn-hangzhou.personal.cr.aliyuncs.com/m1-test/springboot:${tag} --record
+                ''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+            }
+        }
     }
 }
